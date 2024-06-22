@@ -42,7 +42,7 @@ export default (app: Application) => {
       extended: true,
     })
   );
-  app.use("/v0/public", express.static("public"));
+  app.use("/v0/cdn", express.static("images"));
   app.use(cors(corsOptions));
   app.use(cookieParser());
   app.use(morgan("dev"));

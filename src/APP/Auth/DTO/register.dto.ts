@@ -23,6 +23,12 @@ export class RegisterDTO {
   public codeCountry: string
 
   @IsString()
-  public userApi_ID: string
+  public user_ID: string
+
+  @IsString()
+  public user_api_Key: number
+
+  @IsString()
+  public user_Secret_Key: string
 }
 
