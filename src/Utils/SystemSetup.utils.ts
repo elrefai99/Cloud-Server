@@ -6,6 +6,7 @@ import useragent from "express-useragent";
 import requestIp from "request-ip";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import { errorHandler } from "../Middleware/error-handler";
 
 // Create the rate limit rule
 const limiter = rateLimit({
@@ -47,10 +48,11 @@ export default (app: Application) => {
   app.use(morgan("dev"));
   app.use(useragent.express());
   app.set("trust proxy", true);
-  app.use(async (req: Request | any, res: Response, next: NextFunction) => {
+  app.use(async (req: Request | any, _res: Response, next: NextFunction) => {
     const clientIP = req.headers["cf-connecting-ip"] || req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || req.socket.remoteAddress || "";
     req.clientIP = clientIP;
     next();
   });
   app.use(limiter);
+  app.use(errorHandler);
 };

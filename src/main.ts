@@ -1,7 +1,8 @@
-import 'dotenv/config'
 import express, { Application, Request, Response } from 'express'
 import SystemSetupUtils from './Utils/SystemSetup.utils'
 import { connect } from 'mongoose'
+import { configDotEnv } from './Config/env/env'
+configDotEnv()
 
 const app: Application = express()
 
