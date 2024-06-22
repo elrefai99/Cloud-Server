@@ -14,8 +14,12 @@ export default (app: Application) => {
     },
   })
 
-  ioSocket.on('connection', (_cred: any) => {
+  ioSocket.on('connection', (cred: any) => {
     console.log('a user connect')
+
+    cred.on('disconnect', () => {
+      console.log(`user ${cred.id} left.`)
+    })
   })
 
   // MongoDB connection
